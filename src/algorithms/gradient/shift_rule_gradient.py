@@ -8,7 +8,7 @@ from qiskit.quantum_info.states import DensityMatrix, Statevector
 import numpy as np
 p_v = ParameterVector("pv", 3)
 
-class CircuitOptimizer():
+class ShiftRuleGradient():
     def __init__(self, cost_function="HST", N = 4, epsilon = 0.5):
         self.cost_function = cost_function
         self.epsilon = epsilon
