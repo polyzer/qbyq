@@ -5,11 +5,8 @@ import pytest
 
 def test_unitarity():
     u = unitary_group.rvs(3)
-    Operator.is_unitary(u)
-    
+    return Operator.is_unitary(u)
+
 def test_hermitian():
     u = unitary_group.rvs(3)
-    Operator.is_hermitian(u)
-
-# if __name__ == '__main__':
-#     unittest.main()
+    return Operator.is_hermitian(u)
