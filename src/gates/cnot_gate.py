@@ -4,7 +4,7 @@ import pdb
 import numpy as np
 from src.gates.operator import Operator
 
-class Gate:
+class CNOTGate:
     def __init__(self, operator:Iterable, qubits:Iterable, controlled:bool = False, parametrized:bool = False):
         self.qubits = qubits
         self.operator = operator
