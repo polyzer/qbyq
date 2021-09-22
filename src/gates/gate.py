@@ -1,5 +1,6 @@
 from typing import Iterable
 import typing
+import pdb
 import numpy as np
 from src.gates.operator import Operator
 
@@ -11,9 +12,12 @@ class Gate:
         self.parametrized = parametrized
 
     def apply(self, state):
-        return self.operator @ state
+        vec = state.get_state()
+        st = self.operator @ vec
+        state.set_state(st)
+        return state
 
-    def expand_by_identical(self) -> Gate:
+    def expand_by_identical(self):
         for i in self.qubits:
             q = self.qubits[i]
 

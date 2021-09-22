@@ -6,8 +6,14 @@ class QuantumState:
         if self.is_quantum_state(vec):        
             self.state = vec
     
+    def get_state(self):
+        return self.state
+    
+    def set_state(self, state):
+        self.state = state
+
     def __repr__(self):
-        pass
+        return str(self.state)
 
     def __str__(self):
         return str(self.state)

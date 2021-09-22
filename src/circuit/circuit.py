@@ -25,21 +25,26 @@ class QuantumCircuit:
 
     def execute(self, state: QuantumState):
         for i in range(len(self.gates_array)):
-            state = self.gate.apply(state)
+            state = self.gates_array[i].apply(state)
         return state
         
-    def create_qubits(qubits_count: int) -> list:
+    def create_qubits(self, qubits_count: int) -> list:
         qubits = []
         for i in range(qubits_count):
             qubits.append(Qubit())
         return qubits
 
-    def create_state(qubits_count: int) -> QuantumState:
+    def create_state(self, qubits_count: int) -> QuantumState:
         qs = QuantumState(qubits_count)
 
-    def add(self, gate):
+    def append(self, gate):
         self.gates_array.append(gate)
 
     def dag(self):
         return None
         
+    def __repr__(self) -> str:
+        pass
+    
+    def __str__(self) -> str:
+        pass
