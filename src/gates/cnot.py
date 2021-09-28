@@ -21,7 +21,7 @@ class CNOTGate:
         for i in self.qubits:
             q = self.qubits[i]
 
-    def make_adjacent_control(self):
+    def make_adjacent_control(self, ):
         pass
 
     def make_n_controlled(self, control_qubits_count: int):
