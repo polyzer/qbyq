@@ -1,6 +1,7 @@
 from typing import Iterable
 import numpy as np
 from src.gates.operator import Operator
+from src.gates.controlled_gate import ControlledGate
 from src.state.quantum_state import QuantumState
 from src.state.qubit import Qubit
 
@@ -12,18 +13,21 @@ class QuantumCircuit:
         self.result_operator = None
         self.qubits = self.create_qubits(qubits_count)
 
+    def make_preprocessing(self, gates_array: Iterable) -> Iterable:
+        new_gates_array = []
+        for i in range(len(self.gates_array)):
+            gate = self.gates_array[i]
+            if isinstance(gate, ControlledGate):                
+                adj_gates_array = gate.make_adjacent_control_gates_array()
+                new_gates_array += adj_gates_array
+            else:
+                new_gates_array.append(gate)
+            return new_gates_array
 
-    # def add_swaps_to_non_neighbor_cnot(self, gates_array: Iterable, gate_index: int) -> Iterable:
-    #     """"""
-    #     new_gates_set = []
-    #     gate = gates_array[gate_index]
-    #     qubits = gate.qubits
-    #     for i in range(len(qubits)):
-    #         q = qubits[i]
-            
-    #     return
+        return gates_array
 
     def execute(self, state: QuantumState):
+        self.gates_array = self.make_preprocessing(self.gates_array)
         for i in range(len(self.gates_array)):
             state = self.gates_array[i].apply(state)
         return state

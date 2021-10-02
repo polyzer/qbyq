@@ -25,7 +25,7 @@ cnot_operator = np.array([
     [0, 0, 1, 0,],
 ])
 gate = gates.Gate(operator = cnot_operator, qubits=[0,1])
-cnotgate = gates.CNOTGate(qubits=[0,1])
+cnotgate = gates.CNOTGate(control_qubits = [0,1], qubits=[2,3])
 qc = QuantumCircuit(qubits_count=2)
 qc.append(cnotgate)
 qc.append(gate)
