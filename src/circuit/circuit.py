@@ -1,7 +1,7 @@
 from typing import Iterable
 import numpy as np
 from src.gates.operator import Operator
-from src.state.state import QuantumState
+from src.state.quantum_state import QuantumState
 from src.state.qubit import Qubit
 
 class QuantumCircuit:

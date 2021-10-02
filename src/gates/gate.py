@@ -39,7 +39,7 @@ class Gate:
             else:
                 op = I_op
             current_operator = np.kron(op, current_operator)
-        return current_operator
+        self.operator = current_operator
 
     def make_n_controlled(self, control_qubits_count: int, operator: Operator):
         """returns controlled version of this gate"""

@@ -1,5 +1,5 @@
 from src.circuit.circuit import QuantumCircuit
-from src.state.state import QuantumState
+from src.state.quantum_state import QuantumState
 from src import gates
 from src.algorithms.decomposition.sc import make_cs_decompose
 import numpy as np
@@ -25,8 +25,9 @@ cnot_operator = np.array([
     [0, 0, 1, 0,],
 ])
 gate = gates.Gate(operator = cnot_operator, qubits=[0,1])
-gate = gates.Gate(operator = cnot_operator, qubits=[0,1])
+cnotgate = gates.CNOTGate(qubits=[0,1])
 qc = QuantumCircuit(qubits_count=2)
+qc.append(cnotgate)
 qc.append(gate)
 
 print(qs)
