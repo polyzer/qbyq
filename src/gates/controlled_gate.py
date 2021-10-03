@@ -4,12 +4,13 @@ import pdb
 import numpy as np
 from .gate import Gate
 from .swap_gate import SwapGate
-from src.gates.operator import Operator
+from .operator import Operator
 
 class ControlledGate(Gate):
     def __init__(self, operator:Iterable, control_qubits: Iterable, qubits:Iterable, controlled:bool = True, parametrized:bool = False):
         super().__init__(operator=operator, qubits=qubits)
         self.control_qubits = control_qubits
+        self.qubits = qubits
 
     def make_adjacent_control_gates_array(self) -> Operator:
         """
@@ -31,4 +32,3 @@ class ControlledGate(Gate):
         # we need to replace this gate with new sequence
         gates_array = left_swaps + [self] + right_swaps
         return gates_array
-

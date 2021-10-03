@@ -1,3 +1,4 @@
+import pdb
 from typing import Iterable
 import numpy as np
 from src.gates.operator import Operator
@@ -15,18 +16,20 @@ class QuantumCircuit:
 
     def make_preprocessing(self, gates_array: Iterable) -> Iterable:
         new_gates_array = []
-        for i in range(len(self.gates_array)):
-            gate = self.gates_array[i]
+        for i in range(len(gates_array)):
+            gate = gates_array[i]
             if isinstance(gate, ControlledGate):                
                 adj_gates_array = gate.make_adjacent_control_gates_array()
                 new_gates_array += adj_gates_array
             else:
                 new_gates_array.append(gate)
-            return new_gates_array
 
-        return gates_array
+        for gate in new_gates_array:
+            gate.expand_by_identicals(self.qubits_count)
+        return new_gates_array
 
     def execute(self, state: QuantumState):
+        # pdb.set_trace()
         self.gates_array = self.make_preprocessing(self.gates_array)
         for i in range(len(self.gates_array)):
             state = self.gates_array[i].apply(state)

@@ -7,10 +7,10 @@ from src.gates.operator import Operator
 
 class CNOTGate(ControlledGate):
     def __init__(self, control_qubits: Iterable, qubits:Iterable):
-        operator = [
+        operator = np.array([
             [1, 0, 0, 0],
             [0, 1, 0, 0],
             [0, 0, 0, 1],
             [0, 0, 1, 0],
-        ]
+        ])
         super().__init__(operator=operator, control_qubits=control_qubits, qubits=qubits)
