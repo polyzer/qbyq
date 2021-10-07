@@ -8,9 +8,7 @@ from .operator import Operator
 
 class ControlledGate(Gate):
     def __init__(self, operator:Iterable, control_qubits: Iterable, qubits:Iterable, controlled:bool = True, parametrized:bool = False):
-        super().__init__(operator=operator, qubits=qubits)
-        self.control_qubits = control_qubits
-        self.qubits = qubits
+        super().__init__(operator=operator, control_qubits=control_qubits, qubits=qubits)
 
     def make_adjacent_control_gates_array(self) -> Operator:
         """
